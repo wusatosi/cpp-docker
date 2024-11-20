@@ -3,16 +3,13 @@
 
 {
 	"name": "Beman Project Generic Devcontainer",
-	"build": {
-		"dockerfile": "Dockerfile"
-	},
+	"image": "mcr.microsoft.com/devcontainers/base:ubuntu",
 	"postCreateCommand": "bash .devcontainer/postcreate.sh",
-	"customizations": {
-		"vscode": {
-			"extensions": [
-				"ms-vscode.cpptools",
-				"ms-vscode.cmake-tools"
-			]
+	"features": {
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {
+			"version": "latest",
+			"enableNonRootDocker": true,
+			"moby": false
 		}
 	}
 }
