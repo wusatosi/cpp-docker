@@ -26,6 +26,7 @@ RUN bash build_sys.sh
 # Grab the install scripts
 # GCC via apt
 COPY gcc_stable.sh .
+COPY llvm_stable.sh .
 
 # Clang via official script
 RUN sudo apt-get install -y lsb-release wget software-properties-common gnupg
@@ -38,12 +39,9 @@ RUN bash gcc_stable.sh 14
 
 # Install llvm stable
 # LLVM 16 is not supported by install script, should we still try to install that?
-RUN sudo bash llvm.sh 17
-RUN sudo bash llvm.sh 18
-RUN sudo bash llvm.sh 19
-RUN sudo bash llvm.sh 20
-
-COPY llvm_stable.sh .
+RUN sudo bash llvm_stable.sh 17
+RUN sudo bash llvm_stable.sh 18
+RUN sudo bash llvm_stable.sh 19
 RUN sudo bash llvm_stable.sh 20
 
 # TODO： install trunk;
