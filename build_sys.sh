@@ -1,5 +1,8 @@
 set -e
 
+# Install git
+sudo apt-get install -y git
+
 # Install cmake
 sudo apt-get install -y ca-certificates gpg wget
 test -f /usr/share/doc/kitware-archive-keyring/copyright ||
