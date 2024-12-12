@@ -33,8 +33,6 @@ jobs:
           registry: ghcr.io
           username: wusatosi
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
       - name: Build and push
@@ -47,3 +45,5 @@ jobs:
             COMPILER_VERSION=${{ matrix.compilers.version }}
           tags: ghcr.io/wusatosi/cpp-docker:${{ matrix.compilers.class }}-${{ matrix.compilers.version }}
           push: true
+          # https://github.com/docker/build-push-action/issues/894
+          provenance: false
