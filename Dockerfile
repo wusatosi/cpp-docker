@@ -23,26 +23,19 @@ RUN bash build_sys.sh
 # clang-16
 
 # Install stable versions:
-# Grab the install scripts
-# GCC via apt
-COPY gcc_stable.sh .
-COPY llvm_stable.sh .
-
-# Clang via official script
-RUN sudo apt-get install -y lsb-release wget software-properties-common gnupg
-RUN wget https://apt.llvm.org/llvm.sh
+COPY install_stable.sh .
 
 # Install gcc stable
-RUN bash gcc_stable.sh 12
-RUN bash gcc_stable.sh 13
-RUN bash gcc_stable.sh 14
+RUN bash install_stable.sh GNU 12
+RUN bash install_stable.sh GNU 13
+RUN bash install_stable.sh GNU 14
 
 # Install llvm stable
 # LLVM 16 is not supported by install script, should we still try to install that?
-RUN sudo bash llvm_stable.sh 17
-RUN sudo bash llvm_stable.sh 18
-RUN sudo bash llvm_stable.sh 19
-RUN sudo bash llvm_stable.sh 20
+RUN bash install_stable.sh LLVM 17
+RUN bash install_stable.sh LLVM 18
+RUN bash install_stable.sh LLVM 19
+RUN bash install_stable.sh LLVM 20
 
 # TODO： install trunk;
 
