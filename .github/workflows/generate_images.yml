@@ -3,8 +3,7 @@ name: Generate Images
 on: [push, workflow_dispatch]
 
 jobs:
-  pre-commit-push:
-    name: Pre-Commit check on Push
+  generate-image:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -24,6 +23,7 @@ jobs:
             version: 18
           - class: llvm
             version: 17
+    name: "Image: ${{ matrix.compilers.class }}:${{ matrix.compilers.version }}"
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -45,5 +45,5 @@ jobs:
             UBUNTU_VERSION=24.04
             COMPILER_CLASS=${{ matrix.compilers.class }}
             COMPILER_VERSION=${{ matrix.compilers.version }}
-          tags: ghcr.io/wusatosi/${{ matrix.compilers.class }}:${{ matrix.compilers.version }}
+          tags: ghcr.io/wusatosi/cpp-docker:${{ matrix.compilers.class }}-${{ matrix.compilers.version }}
           push: true
