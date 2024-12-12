@@ -7,7 +7,7 @@ VERSION=$2
 echo "Install $TOOL at: $VERSION"
 
 shopt -s nocasematch
-if [ "$TOOL" = "GNU" ]; then
+if [ "$TOOL" = "gnu" ]; then
     sudo apt-get remove -y gcc-$VERSION g++-$VERSION
     sudo apt-get install -y gcc-$VERSION g++-$VERSION
 
