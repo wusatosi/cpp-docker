@@ -11,6 +11,9 @@ if [ "$TOOL" = "gnu" ]; then
     sudo apt-get remove -y gcc-$VERSION g++-$VERSION
     sudo apt-get install -y gcc-$VERSION g++-$VERSION
 
+    sudo rm -f /usr/bin/gcc
+    sudo rm -f /usr/bin/g++
+
     sudo ln -s $(which gcc-$VERSION) /usr/bin/gcc
     sudo ln -s $(which g++-$VERSION) /usr/bin/g++
 
@@ -21,8 +24,11 @@ else
 
     sudo bash llvm.sh $2
 
-    sudo ln -s $(which clang-$VERSION) /usr/bin/gcc
-    sudo ln -s $(which clang++-$VERSION) /usr/bin/g++
+    sudo rm -f /usr/bin/clang
+    sudo rm -f /usr/bin/clang++
+
+    sudo ln -s $(which clang-$VERSION) /usr/bin/clang
+    sudo ln -s $(which clang++-$VERSION) /usr/bin/clang++
 
     clang --version
 fi
