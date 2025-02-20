@@ -16,7 +16,7 @@ RUN bash build_sys.sh
 # Install Compiler
 COPY install_stable.sh .
 
-ARG COMPILER_CLASS="GNU"
+ARG COMPILER_CLASS="gnu"
 ARG COMPILER_VERSION="14"
 RUN bash install_stable.sh ${COMPILER_CLASS} ${COMPILER_VERSION}
 
